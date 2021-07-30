@@ -57,7 +57,10 @@ class Trainer:
         # Initialize the environment.
         state = self.env.reset()
 
+        print("starting training")
+
         for step in range(1, self.num_agent_steps + 1):
+            print("step", step)
             state = self.algo.step(self.env, state)
 
             if self.algo.is_update():
@@ -67,8 +70,6 @@ class Trainer:
                 self.evaluate(step)
                 if self.save_params:
                     self.algo.save_params(os.path.join(self.param_dir, f"step{step}"))
-
-        print("episode done, time taken:", time()-self.start_time)
 
         # Wait for the logging to be finished.
         sleep(2)
