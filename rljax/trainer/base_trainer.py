@@ -68,6 +68,8 @@ class Trainer:
                 if self.save_params:
                     self.algo.save_params(os.path.join(self.param_dir, f"step{step}"))
 
+        print("episode done, time taken:", time()-self.start_time)
+
         # Wait for the logging to be finished.
         sleep(2)
 
